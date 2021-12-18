@@ -22,7 +22,6 @@ public class CovidDataServiceImpl implements CovidDataService {
 
   @Override
   public CovidData[] fetchCovidData() throws Exception {
-//    CovidData[] covidDataFromDatabase = covidDataRepository.findAll().toArray(new CovidData[0]);
     CovidData lastAPIRecord = restTemplateService.getLastCovidDataAsObject();
     CovidData lastDBRecord = covidDataRepository.findLastRecord();
 
@@ -33,7 +32,7 @@ public class CovidDataServiceImpl implements CovidDataService {
       return covidDataRepository.findAll().toArray(new CovidData[0]);
     } else {
       CovidData[] dataFromApi = restTemplateService.getCovidDataAsObject();
-
+      //TODO: make it more optimal by only saving the difference between
       Arrays.stream(dataFromApi).forEach(covidData -> {
         if (covidData.getLastUpdatedAtSource() == null) {
           covidData.setLastUpdatedAtSource(covidData.getLastUpdatedAtApify());

@@ -1,7 +1,6 @@
 package com.mindtechapp.demo.services;
 
 import com.mindtechapp.demo.models.CovidData;
-import com.mindtechapp.demo.models.Post;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
