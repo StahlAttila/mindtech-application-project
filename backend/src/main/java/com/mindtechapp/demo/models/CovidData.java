@@ -1,5 +1,6 @@
 package com.mindtechapp.demo.models;
 
+import java.time.OffsetDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -7,7 +8,7 @@ import javax.persistence.Id;
 public class CovidData {
 
   @Id
-  private String lastUpdatedAtApify;
+  private OffsetDateTime lastUpdatedAtSource;
 
   private int infected;
   private int activeInfected;
@@ -15,14 +16,14 @@ public class CovidData {
   private int quarantined;
   private int tested;
   private String sourceUrl;
-  private String lastUpdatedAtSource;
+  private OffsetDateTime lastUpdatedAtApify;
   private String readMe;
 
-  public String getLastUpdatedAtApify() {
+  public OffsetDateTime getLastUpdatedAtApify() {
     return lastUpdatedAtApify;
   }
 
-  public void setLastUpdatedAtApify(String lastUpdatedAtApify) {
+  public void setLastUpdatedAtApify(OffsetDateTime lastUpdatedAtApify) {
     this.lastUpdatedAtApify = lastUpdatedAtApify;
   }
 
@@ -74,11 +75,11 @@ public class CovidData {
     this.sourceUrl = sourceUrl;
   }
 
-  public String getLastUpdatedAtSource() {
+  public OffsetDateTime getLastUpdatedAtSource() {
     return lastUpdatedAtSource;
   }
 
-  public void setLastUpdatedAtSource(String lastUpdatedAtSource) {
+  public void setLastUpdatedAtSource(OffsetDateTime lastUpdatedAtSource) {
     this.lastUpdatedAtSource = lastUpdatedAtSource;
   }
 

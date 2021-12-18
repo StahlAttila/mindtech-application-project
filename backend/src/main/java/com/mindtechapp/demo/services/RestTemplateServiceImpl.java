@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RestTemplateServiceImpl implements RestTemplateService {
 
+  private static final String DATASET_URL = "https://api.apify.com/v2/datasets/Gm6qjTgGqxkEZTkuJ/items?format=json&clean=1";
+  private static final String LAST_DATA_URL = "https://api.apify.com/v2/key-value-stores/RGEUeKe60NjU16Edo/records/LATEST?disableRedirect=true";
+
   private final RestTemplate restTemplate;
 
   public RestTemplateServiceImpl(RestTemplateBuilder restTemplateBuilder) {
@@ -17,13 +20,11 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 
   @Override
   public CovidData[] getCovidDataAsObject() {
-    String url = "https://api.apify.com/v2/datasets/Gm6qjTgGqxkEZTkuJ/items?format=json&clean=1";
-    return this.restTemplate.getForObject(url, CovidData[].class);
+    return this.restTemplate.getForObject(DATASET_URL, CovidData[].class);
   }
 
   @Override
-  public Post[] getPostsAsObject() {
-    String url = "https://jsonplaceholder.typicode.com/posts";
-    return this.restTemplate.getForObject(url, Post[].class);
+  public CovidData getLastCovidDataAsObject() {
+    return this.restTemplate.getForObject(LAST_DATA_URL, CovidData.class);
   }
 }

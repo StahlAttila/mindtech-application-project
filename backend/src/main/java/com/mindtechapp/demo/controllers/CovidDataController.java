@@ -15,18 +15,15 @@ public class CovidDataController {
 
   private final CovidDataService covidDataService;
 
-  private final RestTemplateService restTemplateService;
-
   @Autowired
-  public CovidDataController(CovidDataService covidDataService,
-      RestTemplateService restTemplateService) {
+  public CovidDataController(CovidDataService covidDataService) {
     this.covidDataService = covidDataService;
-    this.restTemplateService = restTemplateService;
   }
 
   @GetMapping("/covid-data")
-  public CovidData[] getCovidData() {
-    return restTemplateService.getCovidDataAsObject();
+  public CovidData[] getCovidData() throws Exception {
+    CovidData[] covidData = covidDataService.fetchCovidData();
+    return covidData;
   }
 
 }
