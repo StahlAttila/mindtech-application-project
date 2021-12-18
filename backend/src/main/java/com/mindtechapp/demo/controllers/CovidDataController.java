@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,16 +26,24 @@ public class CovidDataController {
   }
 
   @GetMapping("/covid-data")
-  public ResponseEntity<CovidDataDTO[]> getCovidData() {
+  public ResponseEntity<CovidDataDTO[]> getCovidData(
+      @RequestParam(required = false) String startingDate,
+      @RequestParam(required = false) String endingDate) {
     CovidData[] dataSet;
+
     try {
-      dataSet = covidDataService.fetchCovidData();
-      CovidDataDTO[] dataSetDTO = modelMapper.map(dataSet, new TypeToken<CovidDataDTO[]>() {
-      }.getType());
-      return ResponseEntity.ok(dataSetDTO);
+      if (startingDate != null || endingDate != null) {
+        dataSet = covidDataService.fetchFilteredCovidData(startingDate, endingDate);
+      } else {
+        dataSet = covidDataService.fetchCovidData();
+      }
     } catch (Exception e) {
       return ResponseEntity.internalServerError().build();
     }
+
+    CovidDataDTO[] dataSetDTO = modelMapper.map(dataSet, new TypeToken<CovidDataDTO[]>() {
+    }.getType());
+    return ResponseEntity.ok(dataSetDTO);
   }
 
 }
