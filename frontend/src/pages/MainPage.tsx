@@ -2,6 +2,7 @@ import { Divider, CircularProgress, Stack, Grid } from '@mui/material'
 import FilterData from '../components/FilterData/FilterData'
 import StyledAreaChart from '../components/Charts/StyledAreaChart'
 import StyledPieChart from '../components/Charts/StyledPieChart'
+import StyledRadialBarChart from '../components/Charts/StyledRadialBarChart'
 
 const MainPage:React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const MainPage:React.FC = () => {
         {/* <CircularProgress size={100} color="primary" /> */}
         {/* <StyledAreaChart /> */}
         <StyledPieChart />
+        <StyledRadialBarChart />
       </Stack>
     </Grid>
   )
