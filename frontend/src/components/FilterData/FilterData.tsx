@@ -1,9 +1,10 @@
-import React from 'react'
-import { Card, CardContent, Typography, CardActions, Button } from '@mui/material'
+import SelectOption from '../UI/SelectOption'
 
 const FilterData = () => {
   return (
-    <div>FILTER CARD</div>
+    <div>
+      <SelectOption />
+    </div>
   )
 }
 

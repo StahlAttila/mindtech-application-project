@@ -1,5 +1,4 @@
 import React from 'react'
-import dataSet from '../../dummy-data/dummy'
 import {
   AreaChart,
   XAxis,
@@ -9,9 +8,10 @@ import {
   CartesianGrid,
   Legend,
 } from 'recharts'
+import CovidData from '../../models/covid-data'
 
-const StyledAreaChart = () => {
-  const formattedData = dataSet.map((data) => {
+const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
+  const formattedData = props.dataSet.map((data) => {
     return { ...data, id: new Date(data.id).toLocaleDateString() }
   })
 
@@ -23,7 +23,7 @@ const StyledAreaChart = () => {
       margin={{ top: 10, right: 30, left: 50, bottom: 0 }}
     >
       <defs>
-        <linearGradient id="colorTested" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="colorActiveInfected" x1="0" y1="0" x2="0" y2="1">
           <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
           <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
         </linearGradient>
@@ -53,10 +53,10 @@ const StyledAreaChart = () => {
       <Legend verticalAlign="top" height={36} />
       <Area
         type="monotone"
-        dataKey="tested"
+        dataKey="activeInfected"
         stroke="#82ca9d"
         fillOpacity={1}
-        fill="url(#colorTested)"
+        fill="url(#colorActiveInfected)"
       />
       <Area
         type="monotone"
