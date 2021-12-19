@@ -8,10 +8,9 @@ import {
   Tooltip,
   CartesianGrid,
   Legend,
-  Line,
 } from 'recharts'
 
-const Chart = () => {
+const StyledAreaChart = () => {
   const formattedData = dataSet.map((data) => {
     return { ...data, id: new Date(data.id).toLocaleDateString() }
   })
@@ -84,4 +83,4 @@ const Chart = () => {
   )
 }
 
-export default Chart
+export default StyledAreaChart
