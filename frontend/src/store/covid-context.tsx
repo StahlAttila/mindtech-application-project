@@ -3,16 +3,16 @@ import CovidData from '../models/covid-data'
 
 type CovidDataContextObj = {
   dataSet: CovidData[]
-  fetchData: (beginingDate: string, endingDate: string) => void
+  updateDataSet: (dataSet: CovidData[]) => void
   changeChartType: (chartType: string) => void
   chartType: string
 }
 
 export const CovidDataContext = React.createContext<CovidDataContextObj>({
   dataSet: [],
-  fetchData: () => {},
+  updateDataSet: () => {},
   changeChartType: () => {},
-  chartType: '',
+  chartType: ''
 })
 
 const CovidDataContextProvider: React.FC = (props) => {
@@ -23,15 +23,15 @@ const CovidDataContextProvider: React.FC = (props) => {
     setChartType(chartType)
   }
 
-  const fetchDataHandler = (beginingDate: string, endingDate: string) => {
-    console.log('fetching data...', beginingDate, endingDate)
+  const updateDataSetHandler = (dataSet: CovidData[]) => {
+    setDataSet(dataSet)
   }
 
   const contextValue: CovidDataContextObj = {
     dataSet,
     chartType,
-    fetchData: fetchDataHandler,
-    changeChartType: changeChartTypeHandler,
+    updateDataSet: updateDataSetHandler,
+    changeChartType: changeChartTypeHandler
   }
 
   return (

@@ -1,12 +1,10 @@
 import { PieChart, Pie, Legend, Tooltip } from 'recharts'
-import data from '../../dummy-data/dummy'
 import CovidData from '../../models/covid-data'
-import { FormattedCovidData, transformCovidData } from '../../utils/chart-data'
+import { transformCovidData } from '../../utils/chart-data'
 
-const StyledAreaChart:React.FC<{data:CovidData}> = (props) => {
-
-  const formattedData: FormattedCovidData = transformCovidData(props.data);
-
+const StyledAreaChart: React.FC<{ data: CovidData }> = (props) => {
+  const formattedData = transformCovidData(props.data)
+  
   return (
     <PieChart width={730} height={250}>
       <Pie
@@ -19,7 +17,7 @@ const StyledAreaChart:React.FC<{data:CovidData}> = (props) => {
         fill="#82ca9d"
         label
       />
-      <Legend layout='vertical' verticalAlign='middle' align='right'/>
+      <Legend layout="vertical" verticalAlign="middle" align="right" />
       <Tooltip />
     </PieChart>
   )

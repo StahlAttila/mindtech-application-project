@@ -1,16 +1,33 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Divider, CircularProgress, Stack, Grid } from '@mui/material'
 import FilterData from '../components/FilterData/FilterData'
 import StyledAreaChart from '../components/Charts/StyledAreaChart'
 import StyledPieChart from '../components/Charts/StyledPieChart'
 import StyledRadialBarChart from '../components/Charts/StyledRadialBarChart'
-import data from '../dummy-data/dummy'
 import { CovidDataContext } from '../store/covid-context'
+import { fetchApiData } from '../lib/api'
+import useHttp from '../hooks/use-http'
 
 const MainPage: React.FC = () => {
   const { chartType } = useContext(CovidDataContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const {sendRequest, status, data} = useHttp(fetchApiData);
   
+  useEffect(() => {
+    sendRequest(null)
+  },[sendRequest]);
+
+  let ChartContent;
+
+  if(status === 'completed' && data != null) {
+    if(chartType === 'area') {
+      ChartContent = <StyledAreaChart dataSet={data}/>
+    } else if (chartType === 'pie') {
+      ChartContent = <StyledPieChart data={data[data.length - 1]} />
+    } else if(chartType === 'radial-bar') {
+      ChartContent = <StyledRadialBarChart data={data[data.length - 1]} />
+    }
+  }
+
   return (
     <Grid container justifyContent="center" alignItems="center">
       <Stack
@@ -26,10 +43,8 @@ const MainPage: React.FC = () => {
       >
         <FilterData />
         
-        {isLoading && <CircularProgress size={100} color="primary" />}
-        {chartType === 'area' && <StyledAreaChart dataSet={data}/>}
-        {chartType === 'pie' &&<StyledPieChart data={data[data.length - 1]} />}
-        {chartType === 'radial-bar' &&<StyledRadialBarChart data={data[data.length - 1]} />}
+        {status === 'pending' && <CircularProgress size={100} color="primary" />}
+        {ChartContent}
       </Stack>
     </Grid>
   )

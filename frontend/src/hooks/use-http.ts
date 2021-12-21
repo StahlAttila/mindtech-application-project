@@ -48,7 +48,7 @@ const initState: HttpState= {
   error: null,
 }
 
-function useHttp(requestFunction:(dateFilter: DateFilter) => Promise<CovidData[]>) {
+function useHttp(requestFunction:(requestData: DateFilter) => Promise<CovidData[]>) {
   const [httpState, dispatch] = useReducer(httpReducer, initState );
 
   const sendRequest = useCallback(

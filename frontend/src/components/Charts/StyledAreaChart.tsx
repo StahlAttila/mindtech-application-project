@@ -11,10 +11,11 @@ import {
 import CovidData from '../../models/covid-data'
 
 const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
+  
   const formattedData = props.dataSet.map((data) => {
     return { ...data, id: new Date(data.id).toLocaleDateString() }
   })
-
+  
   return (
     <AreaChart
       width={730}
