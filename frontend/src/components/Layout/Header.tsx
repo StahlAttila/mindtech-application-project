@@ -1,12 +1,23 @@
 import React from 'react'
-import { Typography } from '@mui/material';
-import classes from './Header.module.css';
+import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
 
 const Header = () => {
   return (
-    <header className={classes.header}>
-      <Typography className={classes.logo} variant='h5' component="h1" >Hungarian COVID Statistics</Typography>
-    </header>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="#home">
+          <img
+            alt=""
+            src="/covid-19.svg"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{' '}
+          Hungarian COVID Statistics
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
   )
 }
 

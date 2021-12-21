@@ -16,6 +16,7 @@ const MainPage: React.FC = () => {
   const { sendRequest, status, data } = useHttp(fetchApiData)
 
   useEffect(() => {
+    console.log(dateFilter)
     sendRequest(dateFilter)
   }, [sendRequest, dateFilter])
 

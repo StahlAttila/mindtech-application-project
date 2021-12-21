@@ -5,8 +5,8 @@ type CovidDataContextObj = {
   changeChartType: (chartType: string) => void
   chartType: string
   dateFilter: DateFilter
-  changeStartingDate: (startingDate: string) => void
-  changeEndingDate: (ending: string) => void
+  changeStartingDate: (startingDate: string | null) => void
+  changeEndingDate: (ending: string | null) => void
 }
 
 export const CovidDataContext = React.createContext<CovidDataContextObj>({
