@@ -52,7 +52,7 @@ function useHttp(requestFunction:(requestData: DateFilter) => Promise<CovidData[
   const [httpState, dispatch] = useReducer(httpReducer, initState );
 
   const sendRequest = useCallback(
-    async function (requestData) {
+    async function (requestData:DateFilter) {
       dispatch({ type: 'SEND', responseData: null, errorMessage: null });
       try {
         const responseData = await requestFunction(requestData);
