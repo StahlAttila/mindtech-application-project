@@ -1,7 +1,7 @@
 import React from 'react'
 import CovidData from '../../models/covid-data'
 import { RadialBarChart, RadialBar, Legend, Tooltip } from 'recharts'
-import { transformCovidData } from '../../utils/chart-data'
+import { transformCovidData } from '../../utils/utils'
 
 const StyledRadialBarChart:React.FC<{data:CovidData}> = (props) => {
   const formattedData = transformCovidData(props.data);

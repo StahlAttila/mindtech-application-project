@@ -13,7 +13,7 @@ import Alert from 'react-bootstrap/Alert'
 
 const MainPage: React.FC = () => {
   const { chartType, dateFilter } = useContext(CovidDataContext)
-  const { sendRequest, status, data } = useHttp(fetchApiData)
+  const { sendRequest, status, data, error } = useHttp(fetchApiData)
 
   useEffect(() => {
     console.log(dateFilter)
@@ -44,7 +44,8 @@ const MainPage: React.FC = () => {
     <Container>
       <Row>
         <Col>
-          <FilterData />
+          <FilterData lastData={data ? data[data.length - 1] : null}/>
+          {error && <Alert variant='danger'>{error}</Alert>}
         </Col>
         <Col>
           {ChartContent}

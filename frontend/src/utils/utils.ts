@@ -16,3 +16,11 @@ export function transformCovidData(data:CovidData):FormattedCovidData {
 
   return formattedData;
 }
+
+export function calcualteElapsedTime(covidData: CovidData | null): string {
+  if(!covidData) {
+    return "n/a"
+  }
+
+  return new Date(covidData.id).toLocaleString()
+}

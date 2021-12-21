@@ -3,8 +3,11 @@ import Form from 'react-bootstrap/esm/Form'
 import Button from 'react-bootstrap/Button'
 import SelectOption from '../UI/SelectOption'
 import { CovidDataContext } from '../../store/covid-context'
+import Alert from 'react-bootstrap/Alert'
+import { calcualteElapsedTime } from '../../utils/utils'
+import CovidData from '../../models/covid-data'
 
-const FilterData = () => {
+const FilterData:React.FC<{lastData: CovidData | null}> = (props) => {
   const startingDateInputRef = useRef() as React.MutableRefObject<HTMLInputElement>
   const endingDateInputRef = useRef() as React.MutableRefObject<HTMLInputElement>
   const covidDataCTX = useContext(CovidDataContext);
@@ -28,14 +31,24 @@ const FilterData = () => {
 
   }
 
+  let ChartInfo;
+
+  if(covidDataCTX.chartType === 'pie' || covidDataCTX.chartType === 'radial-bar') {
+    ChartInfo = <Alert variant='info'>This type of chart is only considering the last data from the selected date range.</Alert>
+  }
+
+  const elapsedTime = calcualteElapsedTime(props.lastData)
+
   return (
     <div>
       <SelectOption />
+      {ChartInfo}
       <Form onSubmit={handleSubmit}>
         <Form.Control type="date" name="from" ref={startingDateInputRef}/>
         <Form.Control type="date" name="to" ref={endingDateInputRef}/>
         <Button type='submit'>Submit</Button>
       </Form>
+      <span>Database last updated at: {elapsedTime}</span>
     </div>
   )
 }

@@ -61,7 +61,7 @@ function useHttp(requestFunction:(requestData: DateFilter) => Promise<CovidData[
         dispatch({
           type: 'ERROR',
           responseData: null,
-          errorMessage: 'Something went wrong!',
+          errorMessage: 'Could not retrieve data from server!',
         });
       }
     },

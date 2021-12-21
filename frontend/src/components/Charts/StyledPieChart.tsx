@@ -1,6 +1,6 @@
 import { PieChart, Pie, Legend, Tooltip } from 'recharts'
 import CovidData from '../../models/covid-data'
-import { transformCovidData } from '../../utils/chart-data'
+import { transformCovidData } from '../../utils/utils'
 
 const StyledAreaChart: React.FC<{ data: CovidData }> = (props) => {
   const formattedData = transformCovidData(props.data)
