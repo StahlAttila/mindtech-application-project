@@ -7,6 +7,7 @@ import {
   Tooltip,
   CartesianGrid,
   Legend,
+  ResponsiveContainer,
 } from 'recharts'
 import CovidData from '../../models/covid-data'
 
@@ -15,13 +16,32 @@ const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
   const formattedData = props.dataSet.map((data) => {
     return { ...data, id: new Date(data.id).toLocaleDateString() }
   })
+
+  const renderFormattedLegend = (value: string) => {
+    let text = value;
+
+    if(value === 'activeInfected') {
+      text = 'active infected'
+    }
+
+    return <span>{text}</span>;
+  };
+
+  const renderFormattedTooltip = (value: string, name: string) => {
+    let text = name;
+
+    if(text === 'activeInfected') {
+      text = 'active infected'
+    }
+
+    return [value, text]
+  }
   
   return (
+    <ResponsiveContainer width="100%" height={500}>
     <AreaChart
-      width={730}
-      height={500}
       data={formattedData}
-      margin={{ top: 10, right: 30, left: 50, bottom: 0 }}
+      margin={{ top: 50, right: 0, left: 0, bottom: 0 }}
     >
       <defs>
         <linearGradient id="colorActiveInfected" x1="0" y1="0" x2="0" y2="1">
@@ -45,13 +65,12 @@ const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
         dataKey="id"
         height={150}
         angle={-25}
-        tick={{ stroke: 'white' }}
         tickMargin={20}
       />
-      <YAxis tick={{ stroke: 'white' }} />
+      <YAxis mirror={true}/>
       <CartesianGrid strokeDasharray="2" />
-      <Tooltip />
-      <Legend verticalAlign="top" height={36} />
+      <Tooltip formatter={renderFormattedTooltip}/>
+      <Legend verticalAlign="top" formatter={renderFormattedLegend}/>
       <Area
         type="monotone"
         dataKey="activeInfected"
@@ -81,6 +100,7 @@ const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
         fill="url(#colorDeceased)"
       />
     </AreaChart>
+    </ResponsiveContainer>
   )
 }
 

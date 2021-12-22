@@ -6,50 +6,82 @@ import { CovidDataContext } from '../../store/covid-context'
 import Alert from 'react-bootstrap/Alert'
 import { calcualteElapsedTime } from '../../utils/utils'
 import CovidData from '../../models/covid-data'
+import Stack from 'react-bootstrap/Stack'
 
-const FilterData:React.FC<{lastData: CovidData | null}> = (props) => {
-  const startingDateInputRef = useRef() as React.MutableRefObject<HTMLInputElement>
-  const endingDateInputRef = useRef() as React.MutableRefObject<HTMLInputElement>
-  const covidDataCTX = useContext(CovidDataContext);
+const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | null }> = (props) => {
+  const startingDateInputRef = useRef() as React.MutableRefObject<
+    HTMLInputElement
+  >
+  const endingDateInputRef = useRef() as React.MutableRefObject<
+    HTMLInputElement
+  >
+  const covidDataCTX = useContext(CovidDataContext)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const pickedStartingDate = startingDateInputRef.current.value;
-    const pickedEndingDate = endingDateInputRef.current.value;
+    event.preventDefault()
+    const pickedStartingDate = startingDateInputRef.current.value
+    const pickedEndingDate = endingDateInputRef.current.value
 
-    if(pickedStartingDate && pickedStartingDate !== '') {
-      covidDataCTX.changeStartingDate(pickedStartingDate);
+    if (pickedStartingDate && pickedStartingDate !== '') {
+      covidDataCTX.changeStartingDate(pickedStartingDate)
     } else {
-      covidDataCTX.changeStartingDate(null);
+      covidDataCTX.changeStartingDate(null)
     }
 
-    if(pickedEndingDate && pickedEndingDate !== '') {
+    if (pickedEndingDate && pickedEndingDate !== '') {
       covidDataCTX.changeEndingDate(pickedEndingDate)
-    }else {
-      covidDataCTX.changeEndingDate(null);
+    } else {
+      covidDataCTX.changeEndingDate(null)
     }
-
   }
 
-  let ChartInfo;
+  let ChartInfo
 
-  if(covidDataCTX.chartType === 'pie' || covidDataCTX.chartType === 'radial-bar') {
-    ChartInfo = <Alert variant='info'>This type of chart is only considering the last data from the selected date range.</Alert>
+  if (
+    covidDataCTX.chartType === 'pie' ||
+    covidDataCTX.chartType === 'radial-bar'
+  ) {
+    ChartInfo = (
+      <Alert variant="info">
+        This type of chart is only considering the last data from the selected
+        date range.
+      </Alert>
+    )
   }
 
   const elapsedTime = calcualteElapsedTime(props.lastData)
 
   return (
-    <div>
-      <SelectOption />
-      {ChartInfo}
-      <Form onSubmit={handleSubmit}>
-        <Form.Control type="date" name="from" ref={startingDateInputRef}/>
-        <Form.Control type="date" name="to" ref={endingDateInputRef}/>
-        <Button type='submit'>Submit</Button>
-      </Form>
-      <span>Database last updated at: {elapsedTime}</span>
-    </div>
+    <Stack gap={1}>
+      <Stack>
+        <SelectOption />
+        {ChartInfo}
+      </Stack>
+      <Stack gap={3}>
+        <Form onSubmit={handleSubmit}>
+          <Stack >
+            <Stack direction="horizontal">
+              <Form.Label style={{ minWidth: 170, fontSize: 26 }}>
+                Starting Date:
+              </Form.Label>
+              <Form.Control
+                type="date"
+                name="from"
+                ref={startingDateInputRef}
+              />
+            </Stack>
+            <Stack direction="horizontal">
+              <Form.Label style={{ minWidth: 170, fontSize: 26 }}>
+                Ending Date:
+              </Form.Label>
+              <Form.Control type="date" name="to" ref={endingDateInputRef} />
+            </Stack>
+            <Button disabled={props.loadingState === 'pending'} variant='success' type="submit" >{props.loadingState === 'pending' ? 'Loading...' : 'Update'}</Button>
+          </Stack>
+        </Form>
+        <span style={{fontSize: 20}}>Database last updated at: {elapsedTime}</span>
+      </Stack>
+    </Stack>
   )
 }
 

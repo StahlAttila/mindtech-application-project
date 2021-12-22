@@ -11,9 +11,13 @@ import Container from 'react-bootstrap/Container'
 import { Col, Row } from 'react-bootstrap'
 import Alert from 'react-bootstrap/Alert'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import useWindowDimensions from '../hooks/use-window-dimensions'
+
 const MainPage: React.FC = () => {
   const { chartType, dateFilter } = useContext(CovidDataContext)
   const { sendRequest, status, data, error } = useHttp(fetchApiData)
+  const { width } = useWindowDimensions()
 
   useEffect(() => {
     sendRequest(dateFilter)
@@ -40,13 +44,16 @@ const MainPage: React.FC = () => {
   }
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <FilterData lastData={data ? data[data.length - 1] : null}/>
-          {error && <Alert variant='danger'>{error}</Alert>}
+    <Container fluid style={{width: width > 1520 ? '70%' : '' ,marginTop: '10%' }}>
+      <Row className="align-items-center justify-content-center">
+        <Col lg={4} md={6}>
+          <FilterData
+            loadingState={status}
+            lastData={data ? data[data.length - 1] : null}
+          />
+          {error && <Alert variant="danger">{error}</Alert>}
         </Col>
-        <Col>
+        <Col lg={6} md={10}>
           {ChartContent}
         </Col>
       </Row>
