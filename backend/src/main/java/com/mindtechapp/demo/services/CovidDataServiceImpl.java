@@ -24,13 +24,9 @@ public class CovidDataServiceImpl implements CovidDataService {
 
   @Override
   public CovidData[] fetchCovidData() throws Exception {
-    boolean isFresh = isDataBaseUpToDate();
+    refreshDataBase();
 
-    if (isFresh) {
-      return covidDataRepository.findAll().toArray(new CovidData[0]);
-    } else {
-      return refreshDataBase();
-    }
+    return covidDataRepository.findAll().toArray(new CovidData[0]);
   }
 
   @Override
@@ -51,16 +47,19 @@ public class CovidDataServiceImpl implements CovidDataService {
     }).toArray(CovidData[]::new);
   }
 
-  private CovidData[] refreshDataBase() {
-    CovidData[] dataFromApi = restTemplateService.getCovidDataAsObject();
-    Arrays.stream(dataFromApi).forEach(covidData -> {
-      if (covidData.getLastUpdatedAtSource() == null) {
-        covidData.setLastUpdatedAtSource(covidData.getLastUpdatedAtApify());
-      }
-      covidDataRepository.save(covidData);
-    });
+  @Override
+  public void refreshDataBase() throws Exception {
+    boolean isUpToDate = isDataBaseUpToDate();
 
-    return dataFromApi;
+    if (!isUpToDate) {
+      CovidData[] dataFromApi = restTemplateService.getCovidDataAsObject();
+      Arrays.stream(dataFromApi).forEach(covidData -> {
+        if (covidData.getLastUpdatedAtSource() == null) {
+          covidData.setLastUpdatedAtSource(covidData.getLastUpdatedAtApify());
+        }
+        covidDataRepository.save(covidData);
+      });
+    }
   }
 
   private LocalDate convertStringToLocalDate(String date, boolean isStarting) {

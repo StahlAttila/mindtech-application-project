@@ -7,4 +7,6 @@ public interface CovidDataService {
   CovidData[] fetchCovidData() throws Exception;
 
   CovidData[] fetchFilteredCovidData(String startingDate, String endingDate) throws Exception;
+
+  void refreshDataBase() throws Exception;
 }
