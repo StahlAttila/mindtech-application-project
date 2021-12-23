@@ -8,10 +8,10 @@ export type FormattedCovidData = {
 
 export function transformCovidData(data:CovidData):FormattedCovidData {
   const formattedData = [
-    { name: 'quarantined', value: data['quarantined'], fill: '#8884d8' },
-    { name: 'deceased', value: data['deceased'], fill: '#f2182e' },
-    { name: 'activeInfected', value: data['activeInfected'], fill: '#82ca9d' },
-    { name: 'infected', value: data['infected'], fill: '#dbd809' },
+    { name: 'quarantined', value: data['quarantined'], fill: '#9925be' },
+    { name: 'deceased', value: data['deceased'], fill: '#be4d25' },
+    { name: 'activeInfected', value: data['activeInfected'], fill: '#49be25' },
+    { name: 'infected', value: data['infected'], fill: '#2596be' },
   ]
 
   return formattedData;

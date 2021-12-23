@@ -45,20 +45,20 @@ const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
     >
       <defs>
         <linearGradient id="colorActiveInfected" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-          <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+          <stop offset="5%" stopColor="#49be25" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#49be25" stopOpacity={0} />
         </linearGradient>
         <linearGradient id="colorInfected" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor="#dbd809" stopOpacity={0.8} />
-          <stop offset="95%" stopColor="#dbd809" stopOpacity={0} />
+          <stop offset="5%" stopColor="#2596be" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#2596be" stopOpacity={0} />
         </linearGradient>
         <linearGradient id="colorQuarantined" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-          <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+          <stop offset="5%" stopColor="#9925be" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#9925be" stopOpacity={0} />
         </linearGradient>
         <linearGradient id="colorDeceased" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor="#f2182e" stopOpacity={0.8} />
-          <stop offset="95%" stopColor="#f2182e" stopOpacity={0} />
+          <stop offset="5%" stopColor="#be4d25" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#be4d25" stopOpacity={0} />
         </linearGradient>
       </defs>
       <XAxis
@@ -74,28 +74,28 @@ const StyledAreaChart:React.FC<{dataSet: CovidData[]}> = (props) => {
       <Area
         type="monotone"
         dataKey="activeInfected"
-        stroke="#82ca9d"
+        stroke="#49be25"
         fillOpacity={1}
         fill="url(#colorActiveInfected)"
       />
       <Area
         type="monotone"
         dataKey="infected"
-        stroke="#dbd809"
+        stroke="#2596be"
         fillOpacity={1}
         fill="url(#colorInfected)"
       />
       <Area
         type="monotone"
         dataKey="quarantined"
-        stroke="#8884d8"
+        stroke="#9925be"
         fillOpacity={1}
         fill="url(#colorQuarantined)"
       />
       <Area
         type="monotone"
         dataKey="deceased"
-        stroke="#f2182e"
+        stroke="#be4d25"
         fillOpacity={1}
         fill="url(#colorDeceased)"
       />

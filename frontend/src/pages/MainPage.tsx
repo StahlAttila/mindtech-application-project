@@ -11,13 +11,9 @@ import Container from 'react-bootstrap/Container'
 import { Col, Row } from 'react-bootstrap'
 import Alert from 'react-bootstrap/Alert'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import useWindowDimensions from '../hooks/use-window-dimensions'
-
 const MainPage: React.FC = () => {
   const { chartType, dateFilter } = useContext(CovidDataContext)
   const { sendRequest, status, data, error } = useHttp(fetchApiData)
-  const { width } = useWindowDimensions()
 
   useEffect(() => {
     sendRequest(dateFilter)
@@ -37,23 +33,34 @@ const MainPage: React.FC = () => {
     ChartContent = <Alert variant="warning">No data to display!</Alert>
   } else {
     ChartContent = (
-      <Spinner animation="border" variant="info" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+      <div className="d-flex justify-content-center mt-5">
+        <Spinner
+          animation="border"
+          variant="success"
+          role="status"
+          style={{width: '8rem', height: '8rem'}}
+        >
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
     )
   }
 
   return (
-    <Container fluid style={{width: width > 1520 ? '70%' : '' ,marginTop: '10%' }}>
+    <Container className="mt-5">
       <Row className="align-items-center justify-content-center">
-        <Col lg={4} md={6}>
+        <Col lg={5} md={12}>
           <FilterData
             loadingState={status}
             lastData={data ? data[data.length - 1] : null}
           />
-          {error && <Alert variant="danger">{error}</Alert>}
+          {error && (
+            <Alert className="mt-2" variant="danger">
+              {error}
+            </Alert>
+          )}
         </Col>
-        <Col lg={6} md={10}>
+        <Col lg={7} md={12}>
           {ChartContent}
         </Col>
       </Row>

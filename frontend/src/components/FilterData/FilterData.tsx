@@ -42,7 +42,7 @@ const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | n
     covidDataCTX.chartType === 'radial-bar'
   ) {
     ChartInfo = (
-      <Alert variant="info">
+      <Alert className='mt-1' variant="info">
         This type of chart is only considering the last data from the selected
         date range.
       </Alert>

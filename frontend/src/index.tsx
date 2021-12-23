@@ -4,6 +4,8 @@ import './index.css'
 import App from './App'
 import CovidDataContextProvider from './store/covid-context'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <CovidDataContextProvider>
