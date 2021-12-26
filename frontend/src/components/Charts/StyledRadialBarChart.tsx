@@ -24,14 +24,16 @@ const StyledRadialBarChart: React.FC<{ data: CovidData }> = (props) => {
     return <span>{text}</span>
   }
 
-  const renderFormattedTooltip = (value: string, name: string) => {
-    let text = name
-
-    if (text === 'activeInfected') {
-      text = 'active infected'
+  const renderFormattedTooltip = ( value: string, name: string, props: any) => {
+    if(props.payload.name === 'activeInfected') {
+      name = 'active infected'
+    } else {
+      name = props.payload.name
     }
 
-    return [value, text]
+    value = props.payload.value
+
+    return [value, name]
   }
 
   let CustomLegend;
@@ -61,9 +63,10 @@ const StyledRadialBarChart: React.FC<{ data: CovidData }> = (props) => {
       <RadialBarChart
         innerRadius="10%"
         outerRadius="80%"
+        barSize={30}
         data={formattedData}
         startAngle={180}
-        endAngle={0}
+        endAngle={540}
         barCategoryGap="5%"
         margin={{ top: 30, right: 0, left: 0, bottom: 0 }}
       >
