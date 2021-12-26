@@ -3,7 +3,7 @@ import useWindowDimensions from '../../hooks/use-window-dimensions'
 import CovidData from '../../models/covid-data'
 import { transformCovidData } from '../../utils/utils'
 
-const StyledAreaChart: React.FC<{ data: CovidData }> = (props) => {
+const StyledPieChart: React.FC<{ data: CovidData }> = (props) => {
   const { width } = useWindowDimensions()
 
   const formattedData = transformCovidData(props.data)
@@ -70,4 +70,4 @@ const StyledAreaChart: React.FC<{ data: CovidData }> = (props) => {
   )
 }
 
-export default StyledAreaChart
+export default StyledPieChart
