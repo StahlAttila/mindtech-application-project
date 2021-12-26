@@ -11,7 +11,6 @@ public class CovidDataDTO {
   private int activeInfected;
   private int deceased;
   private int quarantined;
-  private int tested;
 
   public OffsetDateTime getLastUpdatedAtSource() {
     return lastUpdatedAtSource;
@@ -51,13 +50,5 @@ public class CovidDataDTO {
 
   public void setQuarantined(int quarantined) {
     this.quarantined = quarantined;
-  }
-
-  public int getTested() {
-    return tested;
-  }
-
-  public void setTested(int tested) {
-    this.tested = tested;
   }
 }

@@ -18,7 +18,7 @@ export const CovidDataContext = React.createContext<CovidDataContextObj>({
 })
 
 const CovidDataContextProvider: React.FC = (props) => {
-  const [chartType, setChartType] = useState('pie')
+  const [chartType, setChartType] = useState('area')
   const [dateFilter, setDateFilter] = useState<DateFilter>({startingDate: null, endingDate: null})
 
   const changeChartTypeHandler = (chartType: string) => {

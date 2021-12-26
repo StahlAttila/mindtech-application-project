@@ -14,8 +14,8 @@ const SelectOption = () => {
     <Stack direction='horizontal'>
       <Form.Label style={{minWidth: 170,fontSize: 26}}>Chart Type:</Form.Label>
       <Form.Select size="lg" onChange={handleChange}>
-        <option value="pie">Pie</option>
         <option value="area">Area</option>
+        <option value="pie">Pie</option>
         <option value="radial-bar">Radial Bar</option>
       </Form.Select>
     </Stack>
