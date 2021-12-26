@@ -42,7 +42,7 @@ const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | n
     covidDataCTX.chartType === 'radial-bar'
   ) {
     ChartInfo = (
-      <Alert className='mt-1' variant="info">
+      <Alert variant="info">
         This type of chart is only considering the last data from the selected
         date range.
       </Alert>
@@ -53,7 +53,7 @@ const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | n
 
   return (
     <Stack gap={1}>
-      <Stack>
+      <Stack gap={2}>
         <SelectOption />
         {ChartInfo}
       </Stack>
@@ -76,7 +76,7 @@ const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | n
               </Form.Label>
               <Form.Control type="date" name="to" ref={endingDateInputRef} />
             </Stack>
-            <Button disabled={props.loadingState === 'pending'} variant='success' type="submit" >{props.loadingState === 'pending' ? 'Loading...' : 'Update'}</Button>
+            <Button className='mt-2' disabled={props.loadingState === 'pending'} variant='success' type="submit" >{props.loadingState === 'pending' ? 'Loading...' : 'Update'}</Button>
           </Stack>
         </Form>
         <span style={{fontSize: 20}}>Database last updated at: {elapsedTime}</span>
