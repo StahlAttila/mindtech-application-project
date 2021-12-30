@@ -8,8 +8,8 @@ import Spinner from 'react-bootstrap/Spinner'
 
 const ChartSelector: React.FC<{
   chartType: string
-  status: string | null
-  data: CovidData[] | null
+  status: string
+  data: CovidData[] | undefined
 }> = (props) => {
   const { status, data, chartType } = props
 

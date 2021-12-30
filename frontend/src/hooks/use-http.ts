@@ -1,67 +1,85 @@
-import React, { useReducer, useCallback } from 'react';
-import CovidData from '../models/covid-data';
-import DateFilter from '../models/date-filter';
+import { useReducer, useCallback } from "react";
+import CovidData from "../models/covid-data";
+import DateFilter from "../models/date-filter";
 
 type HttpState = {
-  status: string | null
-  data: CovidData[] | null
-  error: string | null
+  status: string;
+  data: CovidData[] | undefined;
+  error: string | undefined;
+};
+
+interface ActionSuccess {
+  type: string;
+  responseData: CovidData[];
+  errorMessage?: never;
 }
 
-type Action ={
-  type: string,
-  responseData: CovidData[] | null,
-  errorMessage: string | null
+interface ActionError {
+  type: string;
+  errorMessage: string;
+  responseData?: never;
 }
 
-function httpReducer(state: HttpState, action:Action): HttpState {
-  if (action.type === 'SEND') {
+interface ActionPending {
+  type: string;
+  responseData?: never;
+  errorMessage?: never;
+}
+
+type Action = ActionSuccess | ActionError | ActionPending;
+
+function httpReducer(state: HttpState, action: Action): HttpState {
+  if (action.type === "SEND") {
     return {
-      data: null,
-      error: null,
-      status: 'pending',
+      data: [],
+      error: "",
+      status: "pending",
     };
   }
 
-  if (action.type === 'SUCCESS') {
+  if (action.type === "SUCCESS") {
     return {
       data: action.responseData,
-      error: null,
-      status: 'completed',
+      error: "",
+      status: "completed",
     };
   }
 
-  if (action.type === 'ERROR') {
+  if (action.type === "ERROR") {
     return {
-      data: null,
+      data: [],
       error: action.errorMessage,
-      status: 'completed',
+      status: "completed",
     };
   }
 
   return state;
 }
 
-const initState: HttpState= {
-  status: null,
-  data: null,
-  error: null,
-}
+const initState: HttpState = {
+  status: "",
+  data: [],
+  error: "",
+};
 
-function useHttp(requestFunction:(requestData: DateFilter) => Promise<CovidData[]>) {
-  const [httpState, dispatch] = useReducer(httpReducer, initState );
+function useHttp(
+  requestFunction: (requestData: DateFilter) => Promise<CovidData[]>
+) {
+  const [httpState, dispatch] = useReducer(httpReducer, initState);
 
   const sendRequest = useCallback(
-    async function (requestData:DateFilter) {
-      dispatch({ type: 'SEND', responseData: null, errorMessage: null });
+    async function (requestData: DateFilter) {
+      dispatch({ type: "SEND" });
       try {
         const responseData = await requestFunction(requestData);
-        dispatch({ type: 'SUCCESS', responseData, errorMessage: null });
+        dispatch({
+          type: "SUCCESS",
+          responseData,
+        });
       } catch (error) {
         dispatch({
-          type: 'ERROR',
-          responseData: null,
-          errorMessage: 'Could not retrieve data from server!',
+          type: "ERROR",
+          errorMessage: "Could not retrieve data from server!",
         });
       }
     },

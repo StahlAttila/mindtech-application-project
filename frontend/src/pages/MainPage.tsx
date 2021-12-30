@@ -30,7 +30,7 @@ const MainPage: React.FC = () => {
             </Alert>
           )}
         </Col>
-        <Col lg={7} md={12}>
+        <Col lg={7} md={12} className='text-dark'>
           <ChartSelector chartType={chartType} status={status} data={data}/>
         </Col>
       </Row>
