@@ -8,7 +8,7 @@ const Header = () => {
       <Container>
         <Navbar.Brand href="#home">
           <img
-            alt=""
+            alt="COVID logo"
             src="/covid-19.svg"
             width="30"
             height="30"
