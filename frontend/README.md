@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Hungarian COVID statistics React application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An application to display COVID related statistics in 3 different chart types with customizable date range.
+It is being served with data by another application: [backend](../backend/README.md)
+
+## Environment variables
+
+Environment variables that required to be set up to run the application properly.
+
+REACT_APP_API_BASE_URL = **e.g. http://localhost/8080**
 
 ## Available Scripts
 
@@ -39,8 +46,17 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Chart types
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Area - default chart, capeable of showing all the data at once
+Pie - shows the last data from the selected date range
+Radial Bar - shows the last data from the selected date range
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Data to display
+
+The application is only getting a selected number of data.
+
+Active Infected,
+Infected,
+Quarantined,
+Deceased
