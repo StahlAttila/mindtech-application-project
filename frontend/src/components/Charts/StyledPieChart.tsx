@@ -52,7 +52,7 @@ const StyledPieChart: React.FC<{ data: CovidData }> = (props) => {
 
   return (
     <ResponsiveContainer width="100%" height={500}>
-      <PieChart margin={{ top: 30, left: 0, right: 0, bottom: 70 }}>
+      <PieChart margin={{ top: 30, left: 0, right: 0, bottom: width > 576 ? 70 : 120} }>
         <Pie
           data={formattedData}
           dataKey="value"

@@ -40,7 +40,7 @@ const ChartSelector: React.FC<{
     )
   }
 
-  return <React.Fragment>{ChartContent}</React.Fragment>
+  return <React.Fragment data-testid="test-chart">{ChartContent}</React.Fragment>
 }
 
 export default ChartSelector
