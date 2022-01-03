@@ -27,7 +27,7 @@ const ChartSelector: React.FC<{
     ChartContent = <Alert variant="warning">No data to display!</Alert>
   } else {
     ChartContent = (
-      <div className="d-flex justify-content-center mt-5">
+      <div className="d-flex justify-content-center align-items-center" style={{height: 500}}>
         <Spinner
           animation="border"
           variant="success"
@@ -40,7 +40,7 @@ const ChartSelector: React.FC<{
     )
   }
 
-  return <React.Fragment data-testid="test-chart">{ChartContent}</React.Fragment>
+  return <React.Fragment>{ChartContent}</React.Fragment>
 }
 
 export default ChartSelector

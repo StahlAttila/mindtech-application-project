@@ -67,7 +67,7 @@ const StyledRadialBarChart: React.FC<{ data: CovidData }> = (props) => {
         data={formattedData}
         startAngle={180}
         endAngle={0}
-        barCategoryGap="20%"
+        barCategoryGap="5%"
         margin={{ top: 30, right: 0, left: 0, bottom: 0 }}
       >
         <RadialBar
