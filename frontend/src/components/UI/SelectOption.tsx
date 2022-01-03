@@ -1,4 +1,4 @@
-import { ChangeEventHandler, Fragment, useContext } from 'react'
+import { ChangeEventHandler, useContext } from 'react'
 import { CovidDataContext } from '../../store/covid-context'
 import Form from 'react-bootstrap/Form'
 import { Stack } from 'react-bootstrap'

@@ -3,8 +3,10 @@
 This is a Spring Boot (2.6.1) / Gradle application that can be used to retrieve and save
 COVID related statistics from the following api to a database: https://api.apify.com/v2/datasets/Gm6qjTgGqxkEZTkuJ/items?format=json&clean=1 
 
-The application has one endpoint that returns all the available COVID data or in a filtered way.
-Checking for new data with every request and also possible to set a scheduled task to refresh the database automatically.
+The application has one endpoint that returns all the available COVID data.  
+
+It is also possible to provide a starting and ending date to get a filtered result.
+Providing a CRON expression, it is possible to check for new data automatically.
 
 ## How to Run
 
@@ -21,7 +23,7 @@ This application is packaged as a war which has Tomcat embedded. No Tomcat or JB
 * DB_USER = **database username**
 * DB_PW = **database password**
 * HIBERNATE_DIALECT = **the dialect for the required DB** (e.g. org.hibernate.dialect.MySQL8Dialect)
-* DB_REFRESH_SCHEDULE = **spring cron expression for scheduling automated DB refresh task** (e.g. 0 */10 8-12 * * MON-FRI - every 10 minutes between 8 and 12 every weekday)
+* DB_REFRESH_SCHEDULE = **spring cron expression for scheduling automated DB refresh task** (e.g. 0 */10 8-12 * * MON-FRI - every 10 minutes between 8am and 12pm every weekday)
 
 **note: the project only has MySQL database driver dependency**
 
