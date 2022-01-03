@@ -11,17 +11,17 @@ REACT_APP_API_BASE_URL = **e.g. http://localhost/8080**
 
 ## Chart types
 
-Area - default chart, capeable of showing all the data at once
-Pie - shows the last data from the selected date range
+Area - default chart, capeable of showing all the data at once  
+Pie - shows the last data from the selected date range  
 Radial Bar - shows the last data from the selected date range
 
 ## Data to display
 
 The application is only getting a selected number of data.
 
-Active Infected,
-Infected,
-Quarantined,
+Active Infected,  
+Infected,  
+Quarantined,  
 Deceased
 
 ## Available Scripts
