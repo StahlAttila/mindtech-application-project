@@ -9,6 +9,21 @@ Environment variables that required to be set up to run the application properly
 
 REACT_APP_API_BASE_URL = **e.g. http://localhost/8080**
 
+## Chart types
+
+Area - default chart, capeable of showing all the data at once
+Pie - shows the last data from the selected date range
+Radial Bar - shows the last data from the selected date range
+
+## Data to display
+
+The application is only getting a selected number of data.
+
+Active Infected,
+Infected,
+Quarantined,
+Deceased
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -34,8 +49,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -45,18 +58,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Chart types
-
-Area - default chart, capeable of showing all the data at once
-Pie - shows the last data from the selected date range
-Radial Bar - shows the last data from the selected date range
-
-## Data to display
-
-The application is only getting a selected number of data.
-
-Active Infected,
-Infected,
-Quarantined,
-Deceased

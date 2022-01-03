@@ -41,7 +41,6 @@ Example response:
         activeInfected: 128124,
         deceased: 32780,
         quarantined: 59177,
-        tested: 8006581,
         id: "2021-11-19T09:59:00+01:00"
     },
     {
@@ -49,7 +48,6 @@ Example response:
         activeInfected: 144533,
         deceased: 33172,
         quarantined: 50429,
-        tested: 8134310,
         id: "2021-11-22T09:53:00+01:00"
     }
 ]
