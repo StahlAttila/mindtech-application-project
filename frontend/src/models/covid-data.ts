@@ -4,7 +4,6 @@ type CovidData = {
   deceased: number;
   quarantined: number;
   id: string;
-
 }
 
 export default CovidData;

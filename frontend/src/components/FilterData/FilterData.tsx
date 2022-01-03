@@ -5,10 +5,9 @@ import SelectOption from '../UI/SelectOption'
 import { CovidDataContext } from '../../store/covid-context'
 import Alert from 'react-bootstrap/Alert'
 import { calcualteElapsedTime } from '../../utils/utils'
-import CovidData from '../../models/covid-data'
 import Stack from 'react-bootstrap/Stack'
 
-const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | null }> = (props) => {
+const FilterData: React.FC<{loadingState: string | null}> = (props) => {
   const startingDateInputRef = useRef() as React.MutableRefObject<
     HTMLInputElement
   >
@@ -49,7 +48,7 @@ const FilterData: React.FC<{loadingState: string | null; lastData: CovidData | n
     )
   }
 
-  const elapsedTime = calcualteElapsedTime(props.lastData)
+  const elapsedTime = calcualteElapsedTime(covidDataCTX.lastCovidData)
 
   return (
     <Stack gap={1}>

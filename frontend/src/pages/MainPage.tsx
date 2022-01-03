@@ -9,12 +9,22 @@ import Alert from 'react-bootstrap/Alert'
 import ChartSelector from '../components/Charts/ChartSelector'
 
 const MainPage: React.FC = () => {
-  const { chartType, dateFilter } = useContext(CovidDataContext)
+  const { chartType, dateFilter, updateLastData } = useContext(CovidDataContext)
   const { sendRequest, status, data, error } = useHttp(fetchApiData)
 
   useEffect(() => {
+
     sendRequest(dateFilter)
+
   }, [sendRequest, dateFilter])
+
+  useEffect(() => {
+    
+    if(data && data?.length > 0) {
+      updateLastData(data[data.length - 1])
+    }
+
+  }, [data, updateLastData])
 
   return (
     <Container className="mt-5">
@@ -22,7 +32,6 @@ const MainPage: React.FC = () => {
         <Col lg={5} md={12}>
           <FilterData
             loadingState={status}
-            lastData={data ? data[data.length - 1] : null}
           />
           {error && (
             <Alert className="mt-2" variant="danger">
