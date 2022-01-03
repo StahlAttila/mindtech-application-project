@@ -68,7 +68,7 @@ public class CovidDataServiceImpl implements CovidDataService {
     } else if (date == null || date.isEmpty()) {
       return LocalDate.MAX;
     }
-    //TODO: exception handling
+
     return LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
   }
 
