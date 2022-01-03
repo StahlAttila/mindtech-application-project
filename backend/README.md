@@ -20,7 +20,10 @@ This application is packaged as a war which has Tomcat embedded. No Tomcat or JB
 * DB_URL = **jdbc url of a MySQL server** (e.g. jdbc:mysql://localhost:3306/mindtech - for local server)
 * DB_USER = **database username**
 * DB_PW = **database password**
+* HIBERNATE_DIALECT = **the dialect for the required DB** (e.g. org.hibernate.dialect.MySQL8Dialect)
 * DB_REFRESH_SCHEDULE = **spring cron expression for scheduling automated DB refresh task** (e.g. 0 */10 8-12 * * MON-FRI - every 10 minutes between 8 and 12 every weekday)
+
+**note: the project only has MySQL database driver dependency**
 
 ## Endpoints
 
