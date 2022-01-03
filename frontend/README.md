@@ -1,7 +1,7 @@
 # Hungarian COVID statistics React application
 
 An application to display COVID related statistics in 3 different chart types with customizable date range.
-It is being served with data by another application: [backend](../backend/README.md)
+It is being served with data by another application: [backend](../backend)
 
 ## Environment variables
 
